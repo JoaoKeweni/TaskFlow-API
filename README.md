@@ -13,17 +13,17 @@ Uma API REST completa para gerenciamento de tarefas inspirada no Trello, desenvo
 - JWT (JSON Web Token)
 
 ## Roadmap de Desenvolvimento
-- [x] Configuração inicial do projeto (Spring Initializr)
-- [x] Configuração da conexão com banco de dados PostgreSQL
-- [ ] Modelagem de Entidades e Relacionamentos
-- [ ] Criação dos Repositories
-- [ ] Implementação da Camada de Service e Business Logic
-- [ ] Exposição de Endpoints (Controllers)
-- [ ] Implementação de DTOs e Mappers
-- [ ] Tratamento Global de Exceções
-- [ ] Segurança com Spring Security e JWT
-- [ ] Documentação Interativa com Swagger
-- [ ] Containerização com Docker
+- [x] **Configuração inicial do projeto**: Setup via Spring Initializr.
+- [x] **Conexão com Banco de Dados**: Configuração do PostgreSQL no `application.properties`.
+- [x] **Modelagem de Entidades**: Criação das classes `User`, `Board`, `BoardColumn` e `Task` com seus relacionamentos.
+- [x] **Camada de Persistência**: Criação dos `Repositories` com Spring Data JPA.
+- [ ] **Camada de Serviço**: Implementação das regras de negócio.
+- [ ] **DTOs e Mappers**: Separação entre modelos de banco e modelos de API.
+- [ ] **Controllers (API REST)**: Criação dos endpoints para os CRUDs.
+- [ ] **Tratamento Global de Exceções**: Padronização de erros da API.
+- [ ] **Segurança**: Implementação de Spring Security e JWT.
+- [ ] **Documentação Interativa**: Configuração do Swagger/OpenAPI.
+- [ ] **Dockerização**: Criação de `Dockerfile` e `docker-compose.yml`.
 
 ## Como rodar o projeto localmente
 1. Clone o repositório
