@@ -1,8 +1,8 @@
-# 📝 TaskFlow API
+# TaskFlow API
 
 Uma API REST completa para gerenciamento de tarefas inspirada no Trello, desenvolvida com Java e Spring Boot.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 - Java 21
 - Spring Boot 3.x
 - Spring Data JPA
@@ -12,7 +12,7 @@ Uma API REST completa para gerenciamento de tarefas inspirada no Trello, desenvo
 - Swagger (OpenAPI)
 - JWT (JSON Web Token)
 
-## 📌 Roadmap de Desenvolvimento
+## Roadmap de Desenvolvimento
 - [x] Configuração inicial do projeto (Spring Initializr)
 - [x] Configuração da conexão com banco de dados PostgreSQL
 - [ ] Modelagem de Entidades e Relacionamentos
@@ -25,7 +25,7 @@ Uma API REST completa para gerenciamento de tarefas inspirada no Trello, desenvo
 - [ ] Documentação Interativa com Swagger
 - [ ] Containerização com Docker
 
-## 🛠️ Como rodar o projeto localmente
+## Como rodar o projeto localmente
 1. Clone o repositório
 2. Configure as credenciais do PostgreSQL no arquivo `application.properties`
 3. Execute `./mvnw spring-boot:run` dentro da pasta `api`
