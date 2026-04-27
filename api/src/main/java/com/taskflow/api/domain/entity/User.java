@@ -1,5 +1,6 @@
 package com.taskflow.api.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.*;
 import lombok.*;
 
