@@ -17,9 +17,9 @@ Uma API REST completa para gerenciamento de tarefas inspirada no Trello, desenvo
 - [x] **Conexão com Banco de Dados**: Configuração do PostgreSQL no `application.properties`.
 - [x] **Modelagem de Entidades**: Criação das classes `User`, `Board`, `BoardColumn` e `Task` com seus relacionamentos.
 - [x] **Camada de Persistência**: Criação dos `Repositories` com Spring Data JPA.
-- [ ] **Camada de Serviço**: Implementação das regras de negócio.
-- [ ] **DTOs e Mappers**: Separação entre modelos de banco e modelos de API.
-- [ ] **Controllers (API REST)**: Criação dos endpoints para os CRUDs.
+- [x] **Camada de Serviço**: Implementação das regras de negócio.
+- [x] **DTOs e Mappers**: Separação entre modelos de banco e modelos de API.
+- [x] **Controllers (API REST)**: Criação dos endpoints para os CRUDs.
 - [ ] **Tratamento Global de Exceções**: Padronização de erros da API.
 - [ ] **Segurança**: Implementação de Spring Security e JWT.
 - [ ] **Documentação Interativa**: Configuração do Swagger/OpenAPI.
