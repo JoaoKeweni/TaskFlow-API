@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    // O JpaRepository<User, Long> significa:
-    // User: A entidade que este repositório cuida
-    // Long: O tipo do ID (Chave Primária) daquela entidade
+    boolean existsByEmail(String email);
+
+    boolean existsByUsername(String username);
 }
