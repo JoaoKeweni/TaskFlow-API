@@ -14,8 +14,14 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        // TODO regra pra conferir email existente
-        // TODO regra pra conferir username existente
+        // TODO: regra pra conferir email existente(OK)
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("Este email já está cadatrado");
+        }
+        // TODO: regra pra conferir username existente(OK)
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new IllegalArgumentException("Este username já está em uso");
+        }
         return userRepository.save(user);
     }
 
