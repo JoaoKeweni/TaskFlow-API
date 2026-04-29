@@ -20,7 +20,7 @@ Uma API REST completa para gerenciamento de tarefas inspirada no Trello, desenvo
 - [x] **Camada de Serviço**: Implementação das regras de negócio.
 - [x] **DTOs e Mappers**: Separação entre modelos de banco e modelos de API.
 - [x] **Controllers (API REST)**: Criação dos endpoints para os CRUDs.
-- [ ] **Tratamento Global de Exceções**: Padronização de erros da API.
+- [x] **Tratamento Global de Exceções**: Padronização de erros da API.
 - [ ] **Segurança**: Implementação de Spring Security e JWT.
 - [ ] **Documentação Interativa**: Configuração do Swagger/OpenAPI.
 - [ ] **Dockerização**: Criação de `Dockerfile` e `docker-compose.yml`.
