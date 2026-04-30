@@ -2,6 +2,7 @@ package com.taskflow.api.service;
 
 import java.util.Optional;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.taskflow.api.domain.dto.BoardRequestDTO;
@@ -40,6 +41,21 @@ public class BoardService {
                 savedBoard.getName(),
                 savedBoard.getDescription(),
                 savedBoard.getUser().getUsername());
+    }
+
+    public List<BoardResponseDTO> findAll() {
+        // 1. Busca todo mundo do banco
+        List<Board> boards = boardRepository.findAll();
+
+        // 2. Transforma cada "Board" em um "BoardResponseDTO"
+        return boards.stream()
+                .map(board -> new BoardResponseDTO(
+                        board.getId(),
+                        board.getName(),
+                        board.getDescription(),
+                        board.getUser().getUsername() // Pegamos o nome do dono do Board
+                ))
+                .toList();
     }
 
 }
