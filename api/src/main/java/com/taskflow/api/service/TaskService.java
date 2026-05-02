@@ -2,6 +2,9 @@ package com.taskflow.api.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.taskflow.api.domain.dto.TaskRequestDTO;
 import com.taskflow.api.domain.dto.TaskResponseDTO;
 import com.taskflow.api.domain.entity.BoardColumn;
@@ -51,13 +54,56 @@ public class TaskService {
         Task savedTask = taskRepository.save(task);
 
         // Passo 6: Converte para a "Maleta" de Resposta com os nomes bonitos
+        return convertToResponseDTO(savedTask);
+    }
+
+    public List<TaskResponseDTO> getAllTasks() {
+        return taskRepository.findAll().stream()
+                .map(this::convertToResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    public TaskResponseDTO getTaskById(Long id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Tarefa não encontrada"));
+        return convertToResponseDTO(task);
+    }
+
+    public TaskResponseDTO updateTask(Long id, TaskRequestDTO dto) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Tarefa não encontrada"));
+
+        BoardColumn column = boardColumnRepository.findById(dto.columnId())
+                .orElseThrow(() -> new IllegalArgumentException("Coluna não encontrada"));
+
+        User user = userRepository.findById(dto.userId())
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+
+        task.setTitle(dto.title());
+        task.setDescription(dto.description());
+        task.setPriority(dto.priority());
+        task.setBoardColumn(column);
+        task.setUser(user);
+
+        Task updatedTask = taskRepository.save(task);
+        return convertToResponseDTO(updatedTask);
+    }
+
+    public void deleteTask(Long id) {
+        if (!taskRepository.existsById(id)) {
+            throw new IllegalArgumentException("Tarefa não encontrada");
+        }
+        taskRepository.deleteById(id);
+    }
+
+    private TaskResponseDTO convertToResponseDTO(Task task) {
         return new TaskResponseDTO(
-                savedTask.getId(),
-                savedTask.getTitle(),
-                savedTask.getDescription(),
-                savedTask.getPriority(),
-                savedTask.getBoardColumn().getName(), // Nome da coluna
-                savedTask.getUser().getUsername() // Nome do usuário
+                task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.getPriority(),
+                task.getBoardColumn().getName(),
+                task.getUser().getUsername()
         );
     }
 
