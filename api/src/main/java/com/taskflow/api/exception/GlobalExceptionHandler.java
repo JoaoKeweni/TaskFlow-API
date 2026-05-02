@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.validation.FieldError;
 
 // 1. Diz para o Spring: "Ei, fique de olho nos erros de todos os Controllers!"
 @RestControllerAdvice
@@ -27,6 +31,26 @@ public class GlobalExceptionHandler {
         );
 
         // Devolvemos o Status 400 (Bad Request) com o nosso JSON formatado
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    // Trata os erros de validação (ex: @NotBlank, @NotNull)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex,
+            HttpServletRequest request) {
+
+        // Junta todas as mensagens de erro de validação em uma única string separada por vírgula
+        String errorMessage = ex.getBindingResult().getFieldErrors().stream()
+                .map(FieldError::getDefaultMessage)
+                .collect(Collectors.joining(", "));
+
+        ErrorResponse error = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.value(),
+                errorMessage,
+                request.getRequestURI()
+        );
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }
