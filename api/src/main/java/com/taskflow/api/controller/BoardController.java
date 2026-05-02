@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import com.taskflow.api.domain.dto.BoardRequestDTO;
 import com.taskflow.api.domain.dto.BoardResponseDTO;
@@ -23,7 +24,7 @@ public class BoardController {
 
     // Rota para Criar um novo Quadro
     @PostMapping
-    public ResponseEntity<BoardResponseDTO> createBoard(@RequestBody BoardRequestDTO dto) {
+    public ResponseEntity<BoardResponseDTO> createBoard(@Valid @RequestBody BoardRequestDTO dto) {
         // Passamos o DTO para o nosso Service processar e salvar
         BoardResponseDTO savedBoard = boardService.createBoard(dto);
 

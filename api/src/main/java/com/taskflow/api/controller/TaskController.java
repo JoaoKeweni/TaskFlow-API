@@ -3,6 +3,7 @@ package com.taskflow.api.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import com.taskflow.api.domain.dto.TaskRequestDTO;
 import com.taskflow.api.domain.dto.TaskResponseDTO;
@@ -21,7 +22,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskResponseDTO> createTask(@RequestBody TaskRequestDTO dto) {
+    public ResponseEntity<TaskResponseDTO> createTask(@Valid @RequestBody TaskRequestDTO dto) {
         TaskResponseDTO savedTask = taskService.createTask(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTask);
     }
@@ -37,7 +38,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @RequestBody TaskRequestDTO dto) {
+    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequestDTO dto) {
         return ResponseEntity.ok(taskService.updateTask(id, dto));
     }
 

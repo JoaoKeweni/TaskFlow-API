@@ -3,6 +3,7 @@ package com.taskflow.api.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import com.taskflow.api.domain.dto.BoardColumnRequestDTO;
 import com.taskflow.api.domain.dto.BoardColumnResponseDTO;
@@ -19,7 +20,7 @@ public class BoardColumnController {
     }
 
     @PostMapping
-    public ResponseEntity<BoardColumnResponseDTO> createColumn(@RequestBody BoardColumnRequestDTO dto) {
+    public ResponseEntity<BoardColumnResponseDTO> createColumn(@Valid @RequestBody BoardColumnRequestDTO dto) {
         BoardColumnResponseDTO savedColumn = boardColumnService.createBoardColumn(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedColumn);
     }
