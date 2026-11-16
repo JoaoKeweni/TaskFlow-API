@@ -34,6 +34,30 @@ A API foi projetada com foco em **boas práticas**, utilizando DTOs (Data Transf
 
 ## Como rodar o projeto localmente
 
+### Frontend Angular
+
+Com a API e o PostgreSQL em execução, abra outro terminal na pasta `frontend` e rode:
+
+```bash
+npm install
+npm start
+```
+
+A interface estará disponível em `http://localhost:4200`. Ela consome a API em `http://localhost:8080/api` por padrão. Para usar outro endereço, edite o campo `apiUrl` no início do arquivo `frontend/src/app/app.component.ts`; o endereço escolhido fica salvo no navegador. No primeiro acesso, crie um usuário pela opção **Minha conta** e depois crie seu quadro. O frontend gera as etapas iniciais **A fazer**, **Em andamento** e **Concluído**.
+
+### Publicar o frontend na Vercel com GitHub
+
+O frontend está configurado em `frontend/vercel.json`. A API Spring e o PostgreSQL precisam estar publicados em um serviço que aceite aplicações Java e bancos PostgreSQL; a Vercel hospedará o frontend Angular.
+
+1. Envie este repositório para o GitHub.
+2. Na Vercel, escolha **Add New → Project** e importe o repositório do GitHub.
+3. Em **Root Directory**, selecione `frontend` e confirme. O comando de build e a pasta de saída já estão definidos no `vercel.json`.
+4. Faça o deploy. A Vercel criará deploys automáticos a cada push para a branch de produção e previews para outras branches/PRs.
+5. Publique a API e configure no serviço dela a variável `CORS_ALLOWED_ORIGINS` com o domínio de produção da Vercel, por exemplo `https://taskflow-seu-time.vercel.app` (sem barra no final). Se houver mais de um domínio, separe-os por vírgula.
+6. Abra o site na Vercel, clique em **Minha conta** e informe o endereço público da API terminado em `/api`, por exemplo `https://sua-api.exemplo.com/api`.
+
+O endereço da API e o usuário ficam salvos no navegador. Como a API atual não possui autenticação ou recuperação de usuário, use o mesmo navegador para continuar com o usuário criado.
+
 ### 1. Pré-requisitos
 - [Java 21+](https://jdk.java.net/21/) instalado.
 - Banco de dados [PostgreSQL](https://www.postgresql.org/) rodando na porta `5432`.
